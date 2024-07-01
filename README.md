@@ -1,3 +1,7 @@
+
+
+ 
+ Task 2: 
  Lendsqr-API-Testing
  Automated test scripts for Lendsqr Adjutor APIs 
 
@@ -47,7 +51,5 @@ Notes
 - Ensure that the API endpoints and test data used in the scripts are correct and updated.
 - If there are environment-specific configurations, update the tests accordingly.
 
- Contribution
 
-Feel free to fork this repository, make changes, and submit pull requests.
 
