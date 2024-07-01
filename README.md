@@ -15,7 +15,9 @@
  Test Summary
   API Module  
 
- API Module           Test Case                                       Status
+ API Module  - Signup API  
+ Test Case   -  Successful Signup           -                    
+ Status      -Passed
  Signup API   -      Successful Signup            -                   Passed 
  Signup API    -      Signup with Existing Email   -                   Passed 
  Login API      -     Successful Login              -                  failed 
