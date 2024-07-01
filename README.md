@@ -15,15 +15,32 @@
  Test Summary
   API Module  
 
- API Module  - Signup API  
- Test Case   -  Successful Signup           -                    
- Status      -Passed
- Signup API   -      Successful Signup            -                   Passed 
- Signup API    -      Signup with Existing Email   -                   Passed 
- Login API      -     Successful Login              -                  failed 
- Login API       -    Login with Invalid Credentials -                 Passed 
- Retrieve API Key -   Retrieve API Key with Valid Token -               Passed 
- Retrieve API Key  -  Retrieve API Key with Invalid Token  -           Passed 
+1  API Module  - Signup API  
+   Test Case   - Successful Signup                            
+   Status      - Passed
+
+2 API Module  - Signup API  
+  Test Case   - Signup with Existing Email                           
+  Status      - Passed
+
+3 API Module  -  Login API   
+  Test Case   -  Successful Login                         
+  Status      - failed
+
+4.API Module  -  Login API   
+  Test Case   -  Login with Invalid Credentials                      
+  Status      - Passed
+
+5.API Module  -  Retrieve API Key
+  Test Case   -  Retrieve API Key with Valid Token                      
+  Status      - Passed
+
+6.API Module  -  Retrieve API Key
+  Test Case   -  Retrieve API Key with Invalid Token                     
+  Status      - Passed
+
+
+
 
 Notes
 
