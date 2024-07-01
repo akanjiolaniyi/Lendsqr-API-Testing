@@ -1,4 +1,4 @@
-
+QA summary report :https://docs.google.com/document/d/1INl1tlCjzTeHAJV05QbeVSntCTbIdvjlZt7456TA0v4/edit?usp=sharing
 
  
  Task 2: 
