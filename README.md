@@ -14,7 +14,7 @@
 
  Test Summary
 
- API Module           Test Case                                       Status 
+ API Module           Test Case                                       Status
  Signup API          Successful Signup                               Passed 
  Signup API          Signup with Existing Email                      Passed 
  Login API           Successful Login                                failed 
