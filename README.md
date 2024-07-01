@@ -13,14 +13,15 @@
 3. Run the collection using the Postman Collection Runner.
 
  Test Summary
+  API Module  
 
  API Module           Test Case                                       Status
- Signup API          Successful Signup                               Passed 
- Signup API          Signup with Existing Email                      Passed 
- Login API           Successful Login                                failed 
- Login API           Login with Invalid Credentials                  Passed 
- Retrieve API Key    Retrieve API Key with Valid Token               Passed 
- Retrieve API Key    Retrieve API Key with Invalid Token             Passed 
+ Signup API   -      Successful Signup            -                   Passed 
+ Signup API    -      Signup with Existing Email   -                   Passed 
+ Login API      -     Successful Login              -                  failed 
+ Login API       -    Login with Invalid Credentials -                 Passed 
+ Retrieve API Key -   Retrieve API Key with Valid Token -               Passed 
+ Retrieve API Key  -  Retrieve API Key with Invalid Token  -           Passed 
 
 Notes
 
