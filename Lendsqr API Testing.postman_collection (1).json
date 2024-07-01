@@ -1,0 +1,389 @@
+{
+	"info": {
+		"_postman_id": "7fdf58dc-81f0-4592-8efd-11d1218a44f1",
+		"name": "Lendsqr API Testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25925654",
+		"_collection_link": "https://galactic-astronaut-879737.postman.co/workspace/testing-project~8609ef3c-6d5b-40d0-84a1-b067fe9b9dca/collection/25925654-7fdf58dc-81f0-4592-8efd-11d1218a44f1?action=share&source=collection_link&creator=25925654"
+	},
+	"item": [
+		{
+			"name": "Signup",
+			"item": [
+				{
+					"name": "Signup Positive testcase",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Signup - Positive Case\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.json;\r",
+									"    pm.response.to.have.jsonBody({\r",
+									"        status: \"success\",\r",
+									"        code: null,\r",
+									"        message: \"Successful\",\r",
+									"        session_id: \"\",\r",
+									"        data: null\r",
+									"    });\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n         \"name\": \"olaniyiakanji\",\r\n          \"email\": \"olaniyiakanji10@gmail.com\",\r\n         \"phone_number\": \"+2348181006856\",\r\n          \"business_name\":\"CapitalCash\",\r\n          \"locale\": \"Nigeria\",\r\n          \"rc_number\":\"1234567\",\r\n          \"password\": \"JustLoan@10\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://vigil.lendsqr.com/pecunia/api/v2/onboard",
+							"protocol": "https",
+							"host": [
+								"vigil",
+								"lendsqr",
+								"com"
+							],
+							"path": [
+								"pecunia",
+								"api",
+								"v2",
+								"onboard"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Signup Negative testcase",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Signup - Negative Case (Invalid phone number)\", function () {\r",
+									"  pm.response.to.have.status(400); // Expect bad request status code (common for invalid data)\r",
+									"  pm.response.to.be.json;\r",
+									"  pm.response.to.have.jsonBody({\r",
+									"    status:  \"error\", // Expect error status in response\r",
+									"    message: \"You must enter a valid phone number.\", // Expect You must enter a valid phone number.\r",
+									"    session_id: \"\",\r",
+									"    data: null,\r",
+									"  });\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n         \"name\": \"olaniyiakanji\",\r\n          \"email\": \"olaniyiakanji10@gmail.com\",\r\n         \"phone_number\": \"8181006856\",\r\n          \"business_name\":\"CapitalCash\",\r\n          \"locale\": \"Nigeria\",\r\n          \"rc_number\":\"1234567\",\r\n          \"password\": \"JustLoan@10\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://vigil.lendsqr.com/pecunia/api/v2/onboard",
+							"protocol": "https",
+							"host": [
+								"vigil",
+								"lendsqr",
+								"com"
+							],
+							"path": [
+								"pecunia",
+								"api",
+								"v2",
+								"onboard"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Login Positive testcase",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Login - Positive Case (2FA Required)\", function () {\r",
+									"  pm.response.to.have.status(200); // Expect success status code\r",
+									"  pm.response.to.be.json;\r",
+									"  pm.response.to.have.jsonBody({\r",
+									"    status: \"success\", // Expect success status in response\r",
+									"    message: \"Redirecting to adjutor app\", // Expect specific message\r",
+									"    data: {\r",
+									"      is_twofa_enabled: true, // Expect 2FA to be enabled\r",
+									"    },\r",
+									"  });\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "P5cuQ6v3lkTdZQzejgeEE0VHcD2sf2xaXTDH1P5R",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n          \"email\": \"olaniyiakanji10@gmail.com\",\r\n          \"password\": \"JustLoan@10\"\r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://vigil.lendsqr.com/pecunia/api/v2/auth/admin/login",
+							"protocol": "https",
+							"host": [
+								"vigil",
+								"lendsqr",
+								"com"
+							],
+							"path": [
+								"pecunia",
+								"api",
+								"v2",
+								"auth",
+								"admin",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Negative Test case",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Login - Negative Case (Unexpected Error)\", function () {\r",
+									"  pm.response.to.have.status(400); // Expect server error status code (common for unexpected errors)\r",
+									"  pm.response.to.be.json;\r",
+									"  pm.response.to.have.jsonBody({\r",
+									"    status: \"error\", // Expect error status in response\r",
+									"    message: \"Redirecting to adjutor app.\", // incorrect login credentials\r",
+									"    session_id: \"\",\r",
+									"    data: null,\r",
+									"  });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n          \"email\": \"olaniyiakanji10@gmail.com\",\r\n          \"password\": \"hxrbgyyyfyfyfyf\"\r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://vigil.lendsqr.com/pecunia/api/v2/auth/admin/login",
+							"protocol": "https",
+							"host": [
+								"vigil",
+								"lendsqr",
+								"com"
+							],
+							"path": [
+								"pecunia",
+								"api",
+								"v2",
+								"auth",
+								"admin",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Retrieving API",
+			"item": [
+				{
+					"name": "Retrieving API Positive testcase",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Retrieve APIKey - Positive Case\", function () {\r",
+									"  pm.response.to.have.status(200); // Expect server status code 200 OK\r",
+									"  pm.response.to.be.json;\r",
+									"  pm.response.to.have.jsonBody({\r",
+									"    status: \"success\",\r",
+									"    message: \"success\",\r",
+									"  });\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Njc0NywiaXNfYWRtaW4iOnRydWUsImlwIjoiMTAyLjg5LjQ0LjIzOCIsInJvbGUiOnsibmFtZSI6IlN1cGVyIEFkbWluIiwic2x1ZyI6InN1cGVyX2FkbWluIn0sImN1cnJlbnRfb3JnYW5pemF0aW9uIjp7ImlkIjo1Mjc4LCJzbHVnIjpudWxsLCJ0eXBlX2lkIjo1LCJ0eXBlIjoiY29uc3VtZXIiLCJuYW1lIjoiTGVuZE1vbmV5IiwicHJpbWFyeV9lbWFpbCI6Im9sYW5peWlha2FuamkxMEBnbWFpbC5jb20iLCJzdXBwb3J0X2VtYWlsIjpudWxsLCJsb2dvX3VybCI6Imh0dHBzOi8vZG9jdW1lbnRzLmxlbmRzcXIuY29tL2RlZmF1bHQvMmIxNDk4Yzc3OWM5N2RhNTM2NjMxYjZlMDBlNjE4OGRmMWI4NmMyZmZjMzk3YjE5NTkyMTEwMjE1YmFmMDI4NmNiODUzM2NmODZiMTFhOGM3OGI0OTJjNjY2Y2YzYTA1NmMyYWI5OGFiMDAxMGRiYmRjNWViNjk0Y2MxYjY0N2MuanBnIiwidGllciI6MSwic3RhdHVzIjoicGVuZGluZyIsImNvdW50cnkiOiJOR0EiLCJjdXJyZW5jeSI6Ik5HTiJ9LCJyZWdpb24iOiJMYWdvcyIsInNlc3Npb25faWQiOiIyMDI0MDcwMTEzMzAxOS0wMDUyNzgtQUQ2NzQ3LUxTUS1aQ2hOWVBHNHhjIiwiaWF0IjoxNzE5ODQwNjE5LCJleHAiOjE3MTk4NDc4MTksImlzcyI6ImxlbmRzcXIuY29tIn0.fbmNKfSH-r04DqfFdeGd8EH5ZtuTV_oLEsg6YWFhk5M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://vigil.lendsqr.com/pecunia/api/v1/admin/adjutor/apps?page=1&limit=5",
+							"protocol": "https",
+							"host": [
+								"vigil",
+								"lendsqr",
+								"com"
+							],
+							"path": [
+								"pecunia",
+								"api",
+								"v1",
+								"admin",
+								"adjutor",
+								"apps"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieving API negative test",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Retrieve APIKey - Negative Case (Unexpected Error)\", function () {\r",
+									"  pm.response.to.have.status(401); // Expect server error status code\r",
+									"  pm.response.to.be.json;\r",
+									"  pm.response.to.have.jsonBody({\r",
+									"    status: \"error\", // Expect error status in response\r",
+									"    message: \"Unauthorized access\", // incorrect login credentials\r",
+									"    session_id: \"\",\r",
+									"    data: null,\r",
+									"  });\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Njc0NywiaXNfYWRtaW4iOnRydWUsImlwIjoiMTAyLjg5LjQ0LjIzOCIsInJvbGUiOnsibmFtZSI6IlN1cGVyIEFkbWluIiwic2x1ZyI6InN1cGVyX2FkbWluIn0sImN1cnJlbnRfb3JnYW5pemF0aW9uIjp7ImlkIjo1Mjc4LCJzbHVnIjpudWxsLCJ0eXBlX2lkIjo1LCJ0eXBlIjoiY29uc3VtZXIiLCJuYW1lIjoiTGVuZE1vbmV5IiwicHJpbWFyeV9lbWFpbCI6Im9sYW5peWlha2FuamkxMEBnbWFpbC5jb20iLCJzdXBwb3J0X2VtYWlsIjpudWxsLCJsb2dvX3VybCI6Imh0dHBzOi8vZG9jdW1lbnRzLmxlbmRzcXIuY29tL2RlZmF1bHQvMmIxNDk4Yzc3OWM5N2RhNTM2NjMxYjZlMDBlNjE4OGRmMWI4NmMyZmZjMzk3YjE5NTkyMTEwMjE1YmFmMDI4NmNiODUzM2NmODZiMTFhOGM3OGI0OTJjNjY2Y2YzYTA1NmMyYWI5OGFiMDAxMGRiYmRjNWViNjk0Y2MxYjY0N2MuanBnIiwidGllciI6MSwic3RhdHVzIjoicGVuZGluZyIsImNvdW50cnkiOiJOR0EiLCJjdXJyZW5jeSI6Ik5HTiJ9LCJyZWdpb24iOiJMYWdvcyIsInNlc3Npb25faWQiOiIyMDI0MDcwMTEzMzAxOS0wMDUyNzgtQUQ2NzQ3LUxTUS1aQ2hOWVBHNHhjIiwiaWF0IjoxNzE5ODQwNjE5LCJleHAiOjE3MTk4NDc4MTksImlzcyI6ImxlbmRzcXIuY29tIn0.fbmNKfSH-r04DqfFdeGd8EH5ZtuTV_oLEsg6YWFhk5N",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://vigil.lendsqr.com/pecunia/api/v1/admin/adjutor/apps?page=1&limit=5",
+							"protocol": "https",
+							"host": [
+								"vigil",
+								"lendsqr",
+								"com"
+							],
+							"path": [
+								"pecunia",
+								"api",
+								"v1",
+								"admin",
+								"adjutor",
+								"apps"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
